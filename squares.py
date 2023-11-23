@@ -49,13 +49,19 @@ def convert_numbers(list_of_strings):
     # ...then convert each substring into a number
     return [float(number_string) for number_string in all_numbers]
 
+#Import 
+from argparse import ArgumentParser
 
 if __name__ == "__main__":
     numbers_strings = ["1","2","4"]
     weight_strings = ["1","1","1"]        
+    parser = ArgumentParser(description="Return the weighted average of a list of values")
+    parser.add_argument('--numbers_strings', '-ns', nargs="+")
+    parser.add_argument('--weight_strings', '-ws', nargs="+")
+    arguments = parser.parse_args()
     
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
+    numbers = convert_numbers(arguments.numbers_strings)
+    weights = convert_numbers(arguments.weight_strings)
     
     result = average_of_squares(numbers, weights)
     
